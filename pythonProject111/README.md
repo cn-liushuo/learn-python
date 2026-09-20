@@ -1,82 +1,86 @@
-# Python 零基础教程
+# Python Beginner Tutorial
 
-本目录用于 Python（蟒蛇语言）入门学习：笔记放在 `markdown/`，练习脚本放在 `code/`，运行产生的输出放在 `out/`。
+**Language / 语言:** English | [中文](./README.zh.md)
 
-## 环境要求
+This directory is for learning Python from scratch. Notes live in `markdown/`, practice scripts in `code/`, and runtime output in `out/`.
 
-- Python 3.x（本机练习版本可为 3.14）
-- PyCharm（专业集成开发环境，可选）
+## Requirements
 
-建议在项目虚拟环境（Virtual Environment，虚拟环境）中运行示例：
+- Python 3.x (local practice may use 3.14)
+- PyCharm (optional IDE)
+
+Run examples inside the project virtual environment:
 
 ```bash
-# Windows PowerShell（在 pythonProject111 根目录执行）
+# Windows PowerShell (from the pythonProject111 root)
 .\.venv\Scripts\Activate.ps1
 python code/1.py
 ```
 
-## 项目结构
+## Project layout
 
 ```text
 pythonProject111/
-├── README.md                 # 本说明
-├── code/                     # 练习脚本（.py）
+├── README.md                 # This file (English)
+├── README.zh.md              # Chinese README
+├── code/                     # Practice scripts (.py)
 │   ├── 1.py                  # Hello World
-│   ├── print函数.py          # print 练习
-│   └── input函数.py          # input 练习
-├── markdown/                 # 学习笔记（.md）
-│   └── 第一章节：Python 和 PyCHarn 软件的安装.md
-├── out/                      # 运行输出（脚本写入的文件）
-│   └── 1.txt                 # print 写入文件的示例输出
-└── .venv/                    # 本地虚拟环境（可不提交到版本库）
+│   ├── print函数.py          # print practice
+│   └── input函数.py          # input practice
+├── markdown/                 # Study notes (.md)
+│   ├── chapter-01-python-and-pycharm-installation.md
+│   └── chapter-01-python-and-pycharm-installation.zh.md
+├── out/                      # Runtime output files
+│   └── 1.txt                 # Sample file written by print
+└── .venv/                    # Local virtual environment (optional to commit)
 ```
 
-| 目录 | 用途 |
-|------|------|
-| `code/` | 可运行的 Python 练习代码 |
-| `markdown/` | 章节笔记与安装说明 |
-| `out/` | 程序运行后生成的输出文件 |
+| Directory | Purpose |
+|-----------|---------|
+| `code/` | Runnable Python practice scripts |
+| `markdown/` | Chapter notes and install guides |
+| `out/` | Files produced when scripts run |
 
-## 目录
+## Contents
 
-### 第一章：环境搭建
+### Chapter 1: Environment setup
 
-| 内容 | 文件 |
-|------|------|
-| Python 解释器概述、安装与卸载；PyCharm 介绍、安装、使用与卸载 | [第一章节：Python 和 PyCHarn 软件的安装.md](./markdown/第一章节：Python%20和%20PyCHarn%20软件的安装.md) |
+| Topic | File |
+|-------|------|
+| Python interpreter overview, install, uninstall; PyCharm intro, install, usage, uninstall | [English](./markdown/chapter-01-python-and-pycharm-installation.md) · [中文](./markdown/chapter-01-python-and-pycharm-installation.zh.md) |
 
-章节小节：
+Section outline:
 
-1. Python 解释器概述
-2. Python 解释器的安装
-3. Python 解释器的卸载
-4. PyCharm 介绍
-5. PyCharm 的安装
-6. PyCharm 的使用
-7. PyCharm 的卸载
-8. 本章总结
+1. Python interpreter overview
+2. Installing the Python interpreter
+3. Uninstalling the Python interpreter
+4. Introduction to PyCharm
+5. Installing PyCharm
+6. Using PyCharm
+7. Uninstalling PyCharm
+8. Chapter summary
 
-### 第二章：输入与输出（练习中）
+### Chapter 2: Input and output (in progress)
 
-| 内容 | 文件 | 说明 |
-|------|------|------|
-| Hello World | [1.py](code/1.py) | 第一条 `print` 输出 |
-| `print` 函数 | [print函数.py](code/print函数.py) | `sep` / `end` / `file` 参数；写入 [1.txt](out/1.txt) |
-| `input` 函数 | [input函数.py](code/input函数.py) | 读取姓名与年龄，并用 f-string（格式化字符串）输出 |
+| Topic | File | Notes |
+|-------|------|-------|
+| Hello World | [1.py](code/1.py) | First `print` output |
+| `print` function | [print函数.py](code/print函数.py) | `sep` / `end` / `file`; writes [1.txt](out/1.txt) |
+| `input` function | [input函数.py](code/input函数.py) | Read name and age; print with f-string |
 
-## 建议学习顺序
+## Suggested learning path
 
-1. 阅读 `markdown/` 中第一章安装笔记，完成本机 Python / PyCharm 环境准备  
-2. 运行 `python code/1.py`，确认解释器可用  
-3. 学习并运行 `python code/print函数.py`，理解控制台输出与写入 `out/`  
-4. 学习并运行 `python code/input函数.py`，理解用户输入与 f-string  
+1. Read the Chapter 1 install notes under `markdown/`, then set up Python / PyCharm locally
+2. Run `python code/1.py` to confirm the interpreter works
+3. Study and run `python code/print函数.py` for console output and writing to `out/`
+4. Study and run `python code/input函数.py` for user input and f-strings
 
-## 后续计划
+## Next steps
 
-后续章节（变量、数据类型、运算符、流程控制等）可按同一约定追加：
+Later chapters (variables, data types, operators, control flow, etc.) can follow the same layout:
 
-- 笔记 → `markdown/`
-- 练习脚本 → `code/`
-- 运行输出 → `out/`
+- Notes → `markdown/` (pair `*.md` English with `*.zh.md` Chinese)
+- Practice scripts → `code/`
+- Runtime output → `out/`
 
-并在本 README 的「目录」中保持链接一致。
+Keep links in this README in sync with those files.

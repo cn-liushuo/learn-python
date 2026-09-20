@@ -24,6 +24,6 @@ print(a, b, '好好学习，天天向上', 100)
 print('湖南', end='--->')
 print('欢迎你')
 
-aa = open('1.txt', 'w', encoding='utf-8')  # 写入文件
+aa = open('../out/1.txt', 'w', encoding='utf-8')  # 写入文件
 print('hello world 你好世界', file=aa)  # 输出内容到文件中
 aa.close()  # 关闭文件

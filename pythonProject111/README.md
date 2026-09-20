@@ -1,6 +1,6 @@
 # Python 零基础教程
 
-本目录用于 Python（蟒蛇语言）入门学习，包含环境安装笔记与基础语法练习。
+本目录用于 Python（蟒蛇语言）入门学习：笔记放在 `markdown/`，练习脚本放在 `code/`，运行产生的输出放在 `out/`。
 
 ## 环境要求
 
@@ -10,10 +10,32 @@
 建议在项目虚拟环境（Virtual Environment，虚拟环境）中运行示例：
 
 ```bash
-# Windows PowerShell
+# Windows PowerShell（在 pythonProject111 根目录执行）
 .\.venv\Scripts\Activate.ps1
-python 1.py
+python code/1.py
 ```
+
+## 项目结构
+
+```text
+pythonProject111/
+├── README.md                 # 本说明
+├── code/                     # 练习脚本（.py）
+│   ├── 1.py                  # Hello World
+│   ├── print函数.py          # print 练习
+│   └── input函数.py          # input 练习
+├── markdown/                 # 学习笔记（.md）
+│   └── 第一章节：Python 和 PyCHarn 软件的安装.md
+├── out/                      # 运行输出（脚本写入的文件）
+│   └── 1.txt                 # print 写入文件的示例输出
+└── .venv/                    # 本地虚拟环境（可不提交到版本库）
+```
+
+| 目录 | 用途 |
+|------|------|
+| `code/` | 可运行的 Python 练习代码 |
+| `markdown/` | 章节笔记与安装说明 |
+| `out/` | 程序运行后生成的输出文件 |
 
 ## 目录
 
@@ -21,7 +43,7 @@ python 1.py
 
 | 内容 | 文件 |
 |------|------|
-| Python 解释器概述、安装与卸载；PyCharm 介绍、安装、使用与卸载 | [第一章节：Python 和 PyCHarn 软件的安装.md](./第一章节：Python%20和%20PyCHarn%20软件的安装.md) |
+| Python 解释器概述、安装与卸载；PyCharm 介绍、安装、使用与卸载 | [第一章节：Python 和 PyCHarn 软件的安装.md](./markdown/第一章节：Python%20和%20PyCHarn%20软件的安装.md) |
 
 章节小节：
 
@@ -38,30 +60,23 @@ python 1.py
 
 | 内容 | 文件 | 说明 |
 |------|------|------|
-| Hello World | [1.py](./1.py) | 第一条 `print` 输出 |
-| `print` 函数 | [print函数.py](./print函数.py) | `sep` / `end` / `file` 参数；写入 [1.txt](./1.txt) |
-| `input` 函数 | [input函数.py](./input函数.py) | 读取姓名与年龄，并用 f-string（格式化字符串）输出 |
-
-## 项目结构
-
-```text
-pythonProject111/
-├── README.md                          # 本说明
-├── 第一章节：Python 和 PyCHarn 软件的安装.md
-├── 1.py                               # Hello World
-├── print函数.py                       # print 练习
-├── input函数.py                       # input 练习
-├── 1.txt                              # print 写入文件的示例输出
-└── .venv/                             # 本地虚拟环境（勿提交到版本库亦可）
-```
+| Hello World | [1.py](code/1.py) | 第一条 `print` 输出 |
+| `print` 函数 | [print函数.py](code/print函数.py) | `sep` / `end` / `file` 参数；写入 [1.txt](out/1.txt) |
+| `input` 函数 | [input函数.py](code/input函数.py) | 读取姓名与年龄，并用 f-string（格式化字符串）输出 |
 
 ## 建议学习顺序
 
-1. 阅读第一章安装笔记，完成本机 Python / PyCharm 环境准备  
-2. 运行 `1.py`，确认解释器可用  
-3. 学习并运行 `print函数.py`，理解控制台输出与写入文件  
-4. 学习并运行 `input函数.py`，理解用户输入与 f-string  
+1. 阅读 `markdown/` 中第一章安装笔记，完成本机 Python / PyCharm 环境准备  
+2. 运行 `python code/1.py`，确认解释器可用  
+3. 学习并运行 `python code/print函数.py`，理解控制台输出与写入 `out/`  
+4. 学习并运行 `python code/input函数.py`，理解用户输入与 f-string  
 
 ## 后续计划
 
-后续章节（变量、数据类型、运算符、流程控制等）可在本 README 的「目录」中继续追加，并与对应 `.py` / `.md` 文件保持链接一致。
+后续章节（变量、数据类型、运算符、流程控制等）可按同一约定追加：
+
+- 笔记 → `markdown/`
+- 练习脚本 → `code/`
+- 运行输出 → `out/`
+
+并在本 README 的「目录」中保持链接一致。

@@ -43,6 +43,16 @@ User\用户名\AppData\Local\Programs\Pythons3.14，包含IDLE、pip及文档，
 
 ### 04 PyCharm 介绍
 
+**PyCharm 的基本概念**  
+**PyCharm 的定义**  
+PyCharm 是由 JetBrains 公司开发的一款专为 Python 设计的集成开发环境(IDE)，提供全面的 Python 开发支持工具。
+
+**社区版的特点**  
+免费开源，仅支持 Python 开发(编辑、调试、代码检查)，适合学习和小型项目。
+
+**专业版的特点**  
+需付费订阅，额外支持 Web 开发 (Django/Flash)、数据库工具、Jupyter 深度集成，远程开发等高级功能，适配企业开发/数据分析/机器学习等场景。
+
 ### 05 PyCharm 的安装
 
 ### 06 PyCharm 的使用

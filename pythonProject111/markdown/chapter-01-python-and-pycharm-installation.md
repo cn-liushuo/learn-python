@@ -46,27 +46,67 @@ Also find **Python Launcher**, select it, and click **Uninstall** so that compon
 
 ## 04 Introduction to PyCharm
 
-**What is PyCharm**  
-PyCharm is an integrated development environment (IDE) from JetBrains built for Python, with a full set of Python development tools.
+**Basic concepts of PyCharm**  
+**What PyCharm is**  
+PyCharm is an integrated development environment (IDE) developed by JetBrains specifically for Python, offering a complete set of tools for Python development.
 
-**Community Edition**  
-Free and open source. Supports Python editing, debugging, and code inspection. Good for learning and small projects.
+**Community Edition features**  
+Free and open source. Supports Python development only (editing, debugging, code inspection). Good for learning and small projects.
 
-**Professional Edition**  
-Paid subscription. Adds Web development (Django / Flask), database tools, deeper Jupyter integration, remote development, and other advanced features for enterprise, data analysis, and machine learning work.
+**Professional Edition features**  
+Paid subscription. Adds Web development (Django / Flask), database tools, deeper Jupyter integration, remote development, and other advanced features for enterprise development, data analysis, and machine learning.
+
+**PyCharm core features and use cases**  
+**Core features**  
+Smart code editing, powerful debugging tools, data-analysis-friendly features, version control integration, and a rich plugin ecosystem.
+
+**Use case 1: Learning Python basics**  
+The Community Edition provides the essential development features that beginners need for writing and debugging code, helping them learn Python syntax quickly.
+
+**Use case 2: Data analysis**  
+Deep Jupyter integration makes data processing, visualization, and model training easier, fitting data analysis and machine learning workflows.
+
+**Use case 3: Web development and full-stack development**  
+The Professional Edition supports Web frameworks such as Django, enabling front-end plus Python full-stack development for enterprise-grade Web projects.
 
 ## 05 Installing PyCharm
 
-*(To be filled in)*
+**PyCharm download channels**  
+**01 Official download address**  
+The PyCharm official download address is: https://www.jetbrains.com/zh-cn/pycharm/. You can get the latest installer from that page.
+
+**02 Unified product trial policy**  
+All users automatically receive a one-month free Pro trial. After the trial ends, you can subscribe to Pro or keep using the core features, including Jupyter support, for free.
+
+**03 Version benefits**  
+PyCharm Professional users are unaffected and keep full access to all Pro features in the unified product. The Community Edition is free and open source and supports basic Python development only.
 
 ## 06 Using PyCharm
 
-*(To be filled in)*
+**Initial setup and project creation**  
+**User agreement and import settings**  
+The first time you open PyCharm, you need to read and accept the **JETBRAINS USER AGREEMENT** (version effective September 22, 2021), then click Continue to confirm. Next comes the import settings window, where you can choose **Do not import settings** or import a previous configuration file.
+
+**Creating a new project**  
+On the welcome screen, choose **New Project** to create a local project from scratch, or use SSH, WSL, or Dev Containers for remote development. After you set the project location, the system automatically creates a `.venv` virtual environment to isolate project dependencies.
+
+**Creating a file and writing code**  
+Right-click in the project directory, choose **New** → **Python File**, and name it `1.py`. Type `print('hello world')` in the editor, right-click the file, and choose **Run** to see the output and complete a basic code test.
 
 ## 07 Uninstalling PyCharm
 
-*(To be filled in)*
+**Windows uninstall steps**  
+**Open Control Panel**  
+Search for **Control Panel** in Windows Settings and open it.
+
+**Go to the program uninstall page**  
+In Control Panel, click **Programs** → **Programs and Features** to open the uninstall or change a program page.
+
+**Uninstall PyCharm**  
+Find **PyCharm 2024.3.6** in the list (the actual version depends on what you installed), select it, click **Uninstall**, and follow the prompts.
 
 ## 08 Chapter summary
 
-*(To be filled in)*
+Downloading, installing, and uninstalling the Python interpreter
+
+Downloading, installing, using, configuring, and uninstalling PyCharm

@@ -24,11 +24,13 @@
 python-learn/
 ├── README.md           # 英文说明
 ├── README.zh.md        # 本说明（中文）
+├── package/            # 离线安装包（如 python-3.14.0-amd64.exe）
 └── pythonProject111/   # Python 零基础教程（笔记 + 练习）
 ```
 
 | 路径                                   | 说明                                               |
 |--------------------------------------|--------------------------------------------------|
+| [package](package)                   | 存放离线安装用的安装包（如 `python-3.14.0-amd64.exe`）        |
 | [pythonProject111](pythonProject111) | Python 入门：笔记在 `markdown/`，脚本在 `code/`，输出在 `out/` |
 
 入门教程详情见 [pythonProject111/README.zh.md](pythonProject111/README.zh.md)

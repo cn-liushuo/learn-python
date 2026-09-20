@@ -24,11 +24,13 @@ Learning notes and practice for **Python**, **FastAPI**, and **AI Agent**.
 python-learn/
 ├── README.md           # This file (English)
 ├── README.zh.md        # Chinese README
+├── package/            # Downloaded installers (e.g. Python)
 └── pythonProject111/   # Python beginner tutorial (notes + practice)
 ```
 
 | Path                                 | Description                                                                     |
 |--------------------------------------|---------------------------------------------------------------------------------|
+| [package](package)                   | Installer packages kept for offline setup (e.g. `python-3.14.0-amd64.exe`)       |
 | [pythonProject111](pythonProject111) | Python from scratch: notes in `markdown/`, scripts in `code/`, output in `out/` |
 
 For the beginner tutorial details, see [pythonProject111/README.md](pythonProject111/README.md) (English)

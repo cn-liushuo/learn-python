@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Path, Query
+from fastapi import FastAPI, Path, Query, HTTPException
 from pydantic import BaseModel, Field
 from starlette.responses import HTMLResponse, FileResponse
 
@@ -51,11 +51,13 @@ async def register(user: User):
 async def get_html():
     return "<h1>这是一级标题</h1>"
 
+
 # 接口：返回一张图片内容
 @app.get("/file")
 async def get_file():
     path = "files/photo.jpg"
     return FileResponse(path)
+
 
 # 需求：定义一个新闻的接口 → 响应数据格式 id、title、content
 class News(BaseModel):
@@ -63,10 +65,21 @@ class News(BaseModel):
     title: str
     content: str
 
-@app.get("/news/{id}", response_model=News)
+
+# @app.get("/news/{id}", response_model=News)
+# async def get_news(id: int):
+#     return {
+#         "id": id,
+#         "title": f"这是第{id}本书",
+#         "content": "这是一本好书"
+#     }
+
+# 需求：按id查询新闻 → 1 - 6
+@app.get("/news/{id}")
 async def get_news(id: int):
+    id_list = [1, 2, 3, 4, 5, 6]
+    if id not in id_list:
+        raise HTTPException(status_code=404, detail="您查找的新闻不存在")
     return {
         "id": id,
-        "title": f"这是第{id}本书",
-        "content": "这是一本好书"
     }

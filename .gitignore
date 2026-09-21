@@ -95,6 +95,8 @@ service-account*.json
 
 # VS Code
 .vscode/
+!/FastAPI_first/.vscode/
+!/FastAPI_first/.vscode/**
 *.code-workspace
 
 # Sublime Text

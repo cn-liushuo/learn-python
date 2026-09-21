@@ -1,0 +1,3 @@
+{
+    "python.defaultInterpreterPath": "${workspaceFolder}\\FastAPI_first\\.venv\\Scripts\\python.exe"
+}

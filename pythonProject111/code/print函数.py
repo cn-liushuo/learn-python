@@ -1,3 +1,4 @@
+from pathlib import Path
 """
 print 函数基础语法
 基本语法：print('输入内容')，用于在控制台显示指定文本或数据；扩展语法：print(内容1, 内容2, ..., sep="分隔符", end="结尾符", file=None)，支持多内容输出及参数配置。
@@ -23,6 +24,10 @@ print(a, b, '好好学习，天天向上', 100)
 
 print('湖南', end='--->')
 print('欢迎你')
+
+# 创建文件夹(后面有)
+output_dir = Path("../out")
+output_dir.mkdir(parents=True, exist_ok=True)
 
 aa = open('../out/1.txt', 'w', encoding='utf-8')  # 写入文件
 print('hello world 你好世界', file=aa)  # 输出内容到文件中

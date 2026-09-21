@@ -1,8 +1,21 @@
 # Chapter 2: Python Programming Basics
 
-**Language / 语言:** English | [中文](./chapter-02-python-programming-basics.zh.md)
+**Language / 语言:** English | [中文](./README.zh.md)
 
-This chapter maps one-to-one to files under `code/` and `out/`. Read and run them together.
+This chapter maps one-to-one to the scripts beside this file; their results go to the shared [../out/](../out)
+directory. Read and run them together.
+
+## 00 How to run the examples
+
+```bash
+# From the pythonProject111 root — activate the virtual environment once
+.\.venv\Scripts\Activate.ps1
+
+# Then run the scripts from this chapter's own directory
+# (scripts write to ../out, i.e. the shared pythonProject111/out directory)
+cd chapter-02-python-programming-basics
+python 1.py
+```
 
 ## 01 Overview of programming languages
 
@@ -53,23 +66,22 @@ Clear syntax, rich libraries, wide use (crawlers, data analysis, web, AI/ML, aut
 quickly.
 
 **First program**  
-Script: [1.py](../code/1.py)
+Script: [1.py](../chapter-01-python-and-pycharm-installation/1.py)
 
 ```python
 print('hello world')
 ```
 
 ```bash
-# Windows PowerShell (from the pythonProject111 root)
-.\.venv\Scripts\Activate.ps1
-python code/1.py
+cd chapter-02-python-programming-basics
+python 1.py
 ```
 
 You should see `hello world`. Use English punctuation in code. PyCharm setup is in Chapter 1.
 
 ## 03 Using the print function
 
-Script: [print函数.py](../code/print函数.py)  
+Script: [print函数.py](./print函数.py)  
 Writes: [1.txt](../out/1.txt)
 
 > What `print` does  
@@ -96,7 +108,7 @@ print('欢迎你')  # 湖南--->欢迎你
 **`file`**
 
 ```python
-aa = open('../out/1.txt', 'w', encoding='utf-8')
+aa = open('.../out/1.txt', 'w', encoding='utf-8')
 print('hello world 你好世界', file=aa)
 aa.close()
 ```
@@ -105,12 +117,12 @@ aa.close()
 e.g. `print('Hello', 'World', sep='-')` → `Hello-World`.
 
 ```bash
-python code/print函数.py
+python print函数.py
 ```
 
 ## 04 Using the input function
 
-Script: [input函数.py](../code/input函数.py)
+Script: [input函数.py](./input函数.py)
 
 > What `input` does  
 > Reads a line from the keyboard and always returns a `str`.
@@ -130,12 +142,12 @@ Prefix with `f` and put `{name}` where values go.
 For numeric math: `age = int(input('请输入年龄：'))`. The project demo does not convert.
 
 ```bash
-python code/input函数.py
+python input函数.py
 ```
 
 ## 05 Comments and indentation
 
-Scripts: [注释.py](../code/注释.py) · [python缩进.py](../code/python缩进.py)
+Scripts: [注释.py](./注释.py) · [python缩进.py](./python缩进.py)
 
 ### Comments (`注释.py`)
 
@@ -185,14 +197,14 @@ for i in range(5):  # loop body indented
 
 ## 06 Chapter exercises
 
-Script: [练习题.py](../code/练习题.py)  
+Script: [练习题.py](./练习题.py)  
 Exercise 1 output: [text.txt](../out/text.txt)
 
 **Exercise 1 — write to a text file**  
 Use `print()` to write `好好学习，天天向上` into `out/text.txt`.
 
 ```python
-fp = open('../out/text.txt', 'w', encoding='utf-8')
+fp = open('.../out/text.txt', 'w', encoding='utf-8')
 print('好好学习，天天向上', file=fp)
 fp.close()
 ```
@@ -209,7 +221,7 @@ print(f'我是{name}，我今年{age}，我的爱好是{hobby}')
 ```
 
 ```bash
-python code/练习题.py
+python 练习题.py
 ```
 
 ## 07 Chapter summary
@@ -222,9 +234,9 @@ python code/练习题.py
 
 **Suggested practice order (matches the repo)**
 
-1. [1.py](../code/1.py) — Hello World
-2. [print函数.py](../code/print函数.py) — console + [1.txt](../out/1.txt)
-3. [input函数.py](../code/input函数.py) — input and f-strings
-4. [注释.py](../code/注释.py) — comments
-5. [python缩进.py](../code/python缩进.py) — indentation
-6. [练习题.py](../code/练习题.py) — exercises → [text.txt](../out/text.txt)  
+1. [1.py](../chapter-01-python-and-pycharm-installation/1.py) — Hello World
+2. [print函数.py](./print函数.py) — console + [1.txt](../out/1.txt)
+3. [input函数.py](./input函数.py) — input and f-strings
+4. [注释.py](./注释.py) — comments
+5. [python缩进.py](./python缩进.py) — indentation
+6. [练习题.py](./练习题.py) — exercises → [text.txt](../out/text.txt)  

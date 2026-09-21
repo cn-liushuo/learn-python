@@ -1,8 +1,20 @@
-# 第二章节：Python 编程基础入门
+# 第二章：Python 编程基础入门
 
-**语言 / Language:** [English](./chapter-02-python-programming-basics.md) | 中文
+**语言 / Language:** [English](./README.md) | 中文
 
-本章笔记与 `code/`、`out/` 中的现有文件一一对应，建议边读边运行。
+本章笔记与同目录下的练习脚本一一对应，运行结果写入项目共享的 [../out/](../out) 目录，建议边读边运行。
+
+## 00 如何运行示例
+
+```bash
+# 在 pythonProject111 根目录先激活虚拟环境（只需一次）
+.\.venv\Scripts\Activate.ps1
+
+# 然后在「本章目录」下运行脚本
+# （脚本写入 ../out，即项目共享的 pythonProject111/out 目录）
+cd chapter-02-python-programming-basics
+python 1.py
+```
 
 ## 01 了解程序设计语言概述
 
@@ -19,9 +31,9 @@
 
 | 类型                        | 特点     | 说明                       |
 |---------------------------|--------|--------------------------|
-| 机器语言（Machine Language）    | 二进制指令  | 硬件直接执行，效率高，难写难读          |
-| 汇编语言（Assembly Language）   | 助记符    | 需经汇编器（Assembler）转换，仍依赖硬件 |
-| 高级语言（High-level Language） | 接近自然语言 | 如 Python、Java，需编译或解释后执行  |
+| 机器语言（Machine Language）   | 二进制指令  | 硬件直接执行，效率高，难写难读         |
+| 汇编语言（Assembly Language）  | 助记符    | 需经汇编器（Assembler）转换，仍依赖硬件 |
+| 高级语言（High-level Language）| 接近自然语言 | 如 Python、Java，需编译或解释后执行  |
 
 **编译型与解释型**
 
@@ -51,16 +63,15 @@ Circus》，并非「蟒蛇」。1991 年首个解释器正式发布。
 语法简洁、易学；类库丰富；适用于爬虫、数据分析、Web、人工智能 / 机器学习、自动化、运维、游戏等。修改后可直接运行，开发效率高。
 
 **第一个程序**  
-对应脚本：[1.py](../code/1.py)
+对应脚本：[1.py](../chapter-01-python-and-pycharm-installation/1.py)
 
 ```python
 print('hello world')
 ```
 
 ```bash
-# Windows PowerShell（在 pythonProject111 根目录）
-.\.venv\Scripts\Activate.ps1
-python code/1.py
+cd chapter-02-python-programming-basics
+python 1.py
 ```
 
 看到 `hello world` 即表示解释器可用。括号、引号请用英文输入法输入。
@@ -70,7 +81,7 @@ python code/1.py
 
 ## 03 熟练应用 print 函数
 
-对应脚本：[print函数.py](../code/print函数.py)  
+对应脚本：[print函数.py](./print函数.py)  
 运行后会写入：[1.txt](../out/1.txt)
 
 > 作用  
@@ -99,7 +110,7 @@ print('欢迎你')  # 输出：湖南--->欢迎你
 项目中写入 `out/1.txt`：
 
 ```python
-aa = open('../out/1.txt', 'w', encoding='utf-8')  # 写入文件
+aa = open('.../out/1.txt', 'w', encoding='utf-8')  # 写入文件
 print('hello world 你好世界', file=aa)  # 输出内容到文件中
 aa.close()  # 关闭文件
 ```
@@ -108,12 +119,12 @@ aa.close()  # 关闭文件
 `sep` 默认空格。例如：`print('Hello', 'World', sep='-')` → `Hello-World`。
 
 ```bash
-python code/print函数.py
+python print函数.py
 ```
 
 ## 04 熟练应用 input 函数
 
-对应脚本：[input函数.py](../code/input函数.py)
+对应脚本：[input函数.py](./input函数.py)
 
 > 作用  
 > `input('提示')` 从键盘读入一行，**返回值类型始终是字符串（`str`）**。
@@ -133,12 +144,12 @@ print(f'我的姓名是{name}，我的年龄是{age}')  # f 格式化（f-string
 若要对年龄做加减，可写：`age = int(input('请输入年龄：'))`。项目示例本身未做转换。
 
 ```bash
-python code/input函数.py
+python input函数.py
 ```
 
 ## 05 掌握注释与缩进
 
-对应脚本：[注释.py](../code/注释.py) · [python缩进.py](../code/python缩进.py)
+对应脚本：[注释.py](./注释.py) · [python缩进.py](./python缩进.py)
 
 ### 注释（见 `注释.py`）
 
@@ -190,14 +201,14 @@ for i in range(5):  # for 循环 控制流程
 
 ## 06 本章练习题
 
-对应脚本：[练习题.py](../code/练习题.py)  
+对应脚本：[练习题.py](./练习题.py)  
 第 1 题输出文件：[text.txt](../out/text.txt)
 
 **练习 1：输出到文本文件**  
 用 `print()` 将「好好学习，天天向上」写入 `out/text.txt`。
 
 ```python
-fp = open('../out/text.txt', 'w', encoding='utf-8')  # 写入文件
+fp = open('.../out/text.txt', 'w', encoding='utf-8')  # 写入文件
 print('好好学习，天天向上', file=fp)  # 输出内容到文件
 fp.close()  # 关闭文件
 ```
@@ -214,7 +225,7 @@ print(f'我是{name}，我今年{age}，我的爱好是{hobby}')
 ```
 
 ```bash
-python code/练习题.py
+python 练习题.py
 ```
 
 ## 07 本章总结
@@ -226,9 +237,9 @@ python code/练习题.py
 
 **建议练习顺序（与仓库文件一致）**
 
-1. [1.py](../code/1.py) — Hello World
-2. [print函数.py](../code/print函数.py) — 控制台输出 → [1.txt](../out/1.txt)
-3. [input函数.py](../code/input函数.py) — 输入与 f-string
-4. [注释.py](../code/注释.py) — 单行 / 多行注释
-5. [python缩进.py](../code/python缩进.py) — 缩进与代码块
-6. [练习题.py](../code/练习题.py) — 综合练习 → [text.txt](../out/text.txt)  
+1. [1.py](../chapter-01-python-and-pycharm-installation/1.py) — Hello World
+2. [print函数.py](./print函数.py) — 控制台输出 → [1.txt](../out/1.txt)
+3. [input函数.py](./input函数.py) — 输入与 f-string
+4. [注释.py](./注释.py) — 单行 / 多行注释
+5. [python缩进.py](./python缩进.py) — 缩进与代码块
+6. [练习题.py](./练习题.py) — 综合练习 → [text.txt](../out/text.txt)  

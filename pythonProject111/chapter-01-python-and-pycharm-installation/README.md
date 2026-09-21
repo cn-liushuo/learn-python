@@ -1,6 +1,6 @@
 # Chapter 1: Installing Python and PyCharm
 
-**Language / 语言:** English | [中文](./chapter-01-python-and-pycharm-installation.zh.md)
+**Language / 语言:** English | [中文](./README.zh.md)
 
 ## 01 Python interpreter overview
 

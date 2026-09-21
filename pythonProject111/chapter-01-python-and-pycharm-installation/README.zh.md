@@ -1,6 +1,6 @@
-# 第一章节：Python 和 PyCharm 软件的安装
+# 第一章：Python 和 PyCharm 软件的安装
 
-**语言 / Language:** [English](./chapter-01-python-and-pycharm-installation.md) | 中文
+**语言 / Language:** [English](./README.md) | 中文
 
 ## 01 Python 解释器概述
 

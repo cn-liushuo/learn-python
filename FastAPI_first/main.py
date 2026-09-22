@@ -1,17 +1,28 @@
-from fastapi import FastAPI, Path, Query, HTTPException
+from fastapi import FastAPI, Path, Query, HTTPException, Depends  # 2、导入 Depends
 from pydantic import BaseModel, Field
 from starlette.responses import HTMLResponse, FileResponse
 
 # 创建 FastAPI 实例
 app = FastAPI()
 
-# 中间件是从下往上执行的 中间件的修饰符示例：@app.middleware("http")
+
+# 分页参数逻辑共用：新闻列表和用户列表(依赖注入)
+# 1、依赖项
+async def common_parameters(
+        skip: int = Query(0, ge=0),
+        limit: int = Query(10, le=60)
+):
+    return {"skip": skip, "limit": limit}
+
+
+# (中间件)是从下往上执行的 中间件的修饰符示例：@app.middleware("http")
 @app.middleware("http")
 async def middleware1(request, call_next):
     print("中间件1 start")
     response = await call_next(request)
     print("中间件1 end")
     return response
+
 
 @app.middleware("http")
 async def middleware2(request, call_next):
@@ -44,10 +55,15 @@ async def get_name(name: str = Path(..., min_length=2, max_length=10, descriptio
 
 
 # 需求 查询新闻 → 分页，skip：跳过的记录数，  limit：返回的记录数 10
+# @app.get("/news/news_list")
+# async def get_news_list(skip: int = Query(0, description="跳过的记录数", lt=100),
+#                         limit: int = Query(10, description="返回的记录数")):
+#     return {"skip": skip, "limit": limit}
+
+# 3、声明依赖项 → 依赖注入
 @app.get("/news/news_list")
-async def get_news_list(skip: int = Query(0, description="跳过的记录数", lt=100),
-                        limit: int = Query(10, description="返回的记录数")):
-    return {"skip": skip, "limit": limit}
+async def get_news_list(commons=Depends(common_parameters)):
+    return commons
 
 
 # 注册：用户名和密码 → str
@@ -98,3 +114,8 @@ async def get_news(id: int):
     return {
         "id": id,
     }
+
+
+@app.get("/user/user_list")
+async def get_user_list(commons=Depends(common_parameters)):
+    return commons

@@ -5,7 +5,7 @@ from starlette.responses import HTMLResponse, FileResponse
 # 创建 FastAPI 实例
 app = FastAPI()
 
-
+# 中间件是从下往上执行的 中间件的修饰符示例：@app.middleware("http")
 @app.middleware("http")
 async def middleware1(request, call_next):
     print("中间件1 start")

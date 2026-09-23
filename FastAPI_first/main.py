@@ -173,6 +173,26 @@ async def get_count(db: AsyncSession = Depends(get_database)):
     return num
 
 
+"""
+数据库操作 - 分页查询
+
+分页查询：select().offset().limit()
+▶️offset：跳过的记录数
+▶️limit：返回的记录数
+"""
+
+
+@app.get("/books/get_books")
+async def get_book_list_page(page: int = 1, page_size: int = 2, db: AsyncSession = Depends(get_database)):
+    # (页面 - 1) * 每页数量
+    skip = (page - 1) * page_size
+    # offset 跳过的记录数； limit：每页的记录数；
+    stmt = select(Book).offset(skip).limit(page_size)
+    result = await db.execute(stmt)
+    books = result.scalars().all()
+    return books
+
+
 # 分页参数逻辑共用：新闻列表和用户列表(依赖注入)
 # 1、依赖项
 async def common_parameters(

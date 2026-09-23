@@ -193,6 +193,32 @@ async def get_book_list_page(page: int = 1, page_size: int = 2, db: AsyncSession
     return books
 
 
+"""
+数据库操作 - 新增
+
+核心步骤：定义 ORM 对象 → 添加对象到事务：add(对象) → commit 提交到数据库
+"""
+
+
+# 需求：用户输入图书信息(id, 书名, 作者, 价格, 出版社) → 新增
+# 用户输入 → 参数 → 请求体
+class BookBase(BaseModel):
+    id: int
+    book_name: str
+    author: str
+    price: float
+    publisher: str
+
+
+@app.post("/book/add_book")
+async def add_book(book: BookBase, db: AsyncSession = Depends(get_database)):
+    # ORM 对象 → add → commit
+    book_obj = Book(**book.__dict__)
+    db.add(book_obj)
+    await db.commit()
+    return book
+
+
 # 分页参数逻辑共用：新闻列表和用户列表(依赖注入)
 # 1、依赖项
 async def common_parameters(

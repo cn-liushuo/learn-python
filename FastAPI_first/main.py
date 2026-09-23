@@ -150,6 +150,29 @@ async def get_search_book(db: AsyncSession = Depends(get_database)):
     return books
 
 
+"""
+数据库操作 - 聚合查询
+
+聚合计算：func.方法(模型类.属性)
+▶️count：统计数量
+▶️avg：求平均值
+▶️max：求最大值
+▶️min：求最小值
+▶️sum：求和
+"""
+
+
+@app.get("/book/count")
+async def get_count(db: AsyncSession = Depends(get_database)):
+    # 聚合查询 select( func.方法名(模型类.属性) )
+    # result = await db.execute(select(func.count(Book.id)))
+    # result = await db.execute(select(func.max(Book.price)))
+    # result = await db.execute(select(func.sum(Book.price)))
+    result = await db.execute(select(func.avg(Book.price)))
+    num = result.scalar()  # 用来提取一个数值 → 标量值
+    return num
+
+
 # 分页参数逻辑共用：新闻列表和用户列表(依赖注入)
 # 1、依赖项
 async def common_parameters(

@@ -219,6 +219,12 @@ async def add_book(book: BookBase, db: AsyncSession = Depends(get_database)):
     return book
 
 
+"""
+数据库操作 - 更新
+
+核心步骤：查询 get → 属性重新赋值 → commit 提交到数据库
+"""
+
 # 分页参数逻辑共用：新闻列表和用户列表(依赖注入)
 # 1、依赖项
 async def common_parameters(

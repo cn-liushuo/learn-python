@@ -10,6 +10,10 @@ from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, Asyn
 # 创建 FastAPI 实例
 app = FastAPI()
 
+"""
+ORM 建表
+"""
+
 # 1. 创建异步引擎
 ASYNC_DATABASE_URL = "mysql+aiomysql://root:root@localhost:3306/FastAPI_first?charset=utf8"
 async_engine = create_async_engine(
@@ -51,6 +55,9 @@ async def startup_event():
     await create_tables()
 
 
+"""
+ORM 在路由中使用 ORM
+"""
 # 需求：查询功能的接口，查询图书 → 依赖注入：创建依赖项获取数据库会话 + Depends 注入路由处理函数
 AsyncSessionLocal = async_sessionmaker(
     bind=async_engine,  # 绑定数据库引擎
@@ -72,12 +79,58 @@ async def get_database():
             await session.close()  # 关闭会话
 
 
+# @app.get("/book/books")
+# async def get_book_list(db: AsyncSession = Depends(get_database)):
+#     # 查询
+#     result = await db.execute(select(Book))
+#     book = result.scalars().all()
+#     return book
+
+"""
+数据库操作 - 查询
+
+核心语句：await db.execute(select(模型类))，返回一个 JSON 对象
+
+▶️获取所有数据
+    scalars().all()
+
+▶️获取单条数据
+    scalars().all().first()
+    get(模型类，主键)
+"""
+
+
 @app.get("/book/books")
 async def get_book_list(db: AsyncSession = Depends(get_database)):
     # 查询
-    result = await db.execute(select(Book))
-    book = result.scalars().all()
+    # result = await db.execute(select(Book)) # 查询 → 返回一个 ORM 独享
+    # book = result.scalars().all() # 获取所有数据
+    # book = result.scalars().first() # 获取第一条数据
+    book = await db.get(Book, 3)  # 获取单挑数据 → 根据主键来获取
     return book
+
+
+"""
+数据库操作 - 查询条件
+
+select(模型类).where(条件, 条件2, ...)
+"""
+
+
+# 需求：路径参数 书籍ID
+@app.get("/book/get_book/{book_id}")
+async def get_book_list(book_id: int, db: AsyncSession = Depends(get_database)):
+    result = await db.execute(select(Book).where(Book.id == book_id))
+    book = result.scalar_one_or_none()
+    return book
+
+
+# 需求：条件 价格大于等于200
+@app.get("/book/search_book")
+async def get_search_book(db: AsyncSession = Depends(get_database)):
+    result = await db.execute(select(Book).where(Book.price >= 200))
+    books = result.scalars().all()
+    return books
 
 
 # 分页参数逻辑共用：新闻列表和用户列表(依赖注入)

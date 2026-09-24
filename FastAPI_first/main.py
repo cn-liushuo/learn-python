@@ -225,6 +225,37 @@ async def add_book(book: BookBase, db: AsyncSession = Depends(get_database)):
 核心步骤：查询 get → 属性重新赋值 → commit 提交到数据库
 """
 
+
+# 需求：修改图书的信息：先查再改
+# 设计思路：路径参数数据id：作用是查找；请求体参数：作用是新数据(书名、作者、价格、出版社)
+class BookUpdate(BaseModel):
+    book_name: str
+    author: str
+    price: float
+    publisher: str
+
+
+@app.put("/book/update_book/{book_id}")
+async def update_book(book_id: int, data: BookUpdate, db: AsyncSession = Depends(get_database)):
+    # 1. 查找图书
+    db_book = await db.get(Book, book_id)
+
+    # 如果未找到 抛出异常
+    if db_book is None:
+        raise HTTPException(status_code=404, detail="查无此书")
+
+    # 2. 找到了则修改：重新赋值
+    db_book.book_name = data.book_name
+    db_book.author = data.author
+    db_book.price = data.price
+    db_book.publisher = data.publisher
+
+    # 3. 提交到数据库
+    await db.commit()
+    return db_book
+
+
+# ============================================================================================================
 # 分页参数逻辑共用：新闻列表和用户列表(依赖注入)
 # 1、依赖项
 async def common_parameters(

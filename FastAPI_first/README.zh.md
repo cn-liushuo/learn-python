@@ -9,21 +9,46 @@ Injection）、中间件（Middleware）、以及 SQLAlchemy 异步 ORM（Object
 
 - Python 3.x
 - MySQL（示例库名：`FastAPI_first`）
-- 建议使用本目录下的虚拟环境（Virtual Environment，虚拟环境）
+- 建议使用本目录下的虚拟环境（Virtual Environment）
 
-| 包            | 用途                       |
-|--------------|--------------------------|
-| `fastapi`    | Web API（应用程序接口）框架        |
-| `uvicorn`    | ASGI（异步服务器网关接口）服务器       |
-| `pydantic`   | 请求 / 响应数据校验              |
-| `SQLAlchemy` | ORM 与异步会话（Async Session） |
-| `aiomysql`   | MySQL 异步驱动               |
+| 包                   | 推荐版本      | 用途                                                       |
+|---------------------|-----------|----------------------------------------------------------|
+| `fastapi`           | `0.141.1` | Web API（应用程序接口）框架                                        |
+| `uvicorn[standard]` | `0.21.1`  | ASGI（异步服务器网关接口）服务器；带 `standard` 额外依赖时 `--reload` 热重载稳定好用 |
+| `pydantic`          | `2.13.5`  | 请求 / 响应数据校验                                              |
+| `SQLAlchemy`        | `2.0.54`  | ORM 与异步会话（Async Session）                                 |
+| `aiomysql`          | `0.3.2`   | MySQL 异步驱动                                               |
 
-激活环境并启动：
+## 安装依赖
+
+在 `FastAPI_first` 目录下执行（Windows PowerShell）：
 
 ```bash
-# Windows PowerShell（在 FastAPI_first 目录执行）
+# 1. 创建并激活虚拟环境（若已有 .venv 可跳过创建）
+python -m venv .venv
 .\.venv\Scripts\Activate.ps1
+
+# 2. 安装 uvicorn[standard]（推荐固定 0.21.1，热重载好用）
+pip uninstall uvicorn -y
+pip install "uvicorn[standard]==0.21.1"
+pip show uvicorn
+
+# 3. 安装其余依赖（任选其一）
+pip install -r requirements.txt
+# 或手动安装：
+# pip install fastapi==0.141.1 pydantic==2.13.5 SQLAlchemy==2.0.54 aiomysql==0.3.2
+```
+
+> 说明：必须使用 `uvicorn[standard]`（不要只装裸 `uvicorn`），才会带上热重载等常用额外依赖。`requirements.txt`
+> 已写为 `uvicorn[standard]==0.21.1`。
+
+## 启动服务
+
+```bash
+# 确保已激活 .venv
+.\.venv\Scripts\Activate.ps1
+
+# --reload：文件变更后自动重载（uvicorn[standard]==0.21.1 表现良好）
 uvicorn main:app --reload --host 127.0.0.1 --port 8000
 ```
 
@@ -33,7 +58,7 @@ uvicorn main:app --reload --host 127.0.0.1 --port 8000
 | `http://127.0.0.1:8000/docs`  | 交互文档（Swagger UI） |
 | `http://127.0.0.1:8000/redoc` | 可选文档（ReDoc）      |
 
-数据库连接在 `main.py` 的 `ASYNC_DATABASE_URL` 中配置。请使用本机账号，**勿把真实密码写入文档或提交到版本库**。占位格式示例：
+数据库连接在 `main.py` 的 `ASYNC_DATABASE_URL` 中配置。请使用本机账号，**勿把真实密码写入文档或提交到版本库**。占位格式：
 
 ```text
 mysql+aiomysql://USER:PASSWORD@HOST:3306/FastAPI_first?charset=utf8
@@ -45,6 +70,7 @@ mysql+aiomysql://USER:PASSWORD@HOST:3306/FastAPI_first?charset=utf8
 FastAPI_first/
 ├── README.md              # 英文说明
 ├── README.zh.md           # 本说明（中文）
+├── requirements.txt       # 依赖版本锁定
 ├── main.py                # FastAPI 应用与学习示例
 ├── test_main.http         # HTTP 请求示例（IDE 可直接发送）
 ├── files/
@@ -53,21 +79,18 @@ FastAPI_first/
 └── .venv/                 # 本地虚拟环境（可不提交）
 ```
 
-| 路径               | 用途                   |
-|------------------|----------------------|
-| `main.py`        | 全部路由、中间件、ORM 建表与查询示例 |
-| `test_main.http` | 本地快速联调               |
-| `files/`         | 静态文件示例               |
+| 路径                 | 用途                   |
+|--------------------|----------------------|
+| `main.py`          | 全部路由、中间件、ORM 建表与查询示例 |
+| `requirements.txt` | pip 依赖清单             |
+| `test_main.http`   | 本地快速联调               |
+| `files/`           | 静态文件示例               |
 
 ## 学习路径（与代码对应）
 
 建议按下列章节阅读 `main.py` 中的注释与路由。部分备选写法以注释保留，**当前生效的是未注释的那一版**。
 
----
-
 ### 1. 基础路由
-
-最简单的 `GET` 响应，以及 HTML / 文件 / 异常示例。
 
 | 方法  | 路径           | 说明                                     |
 |-----|--------------|----------------------------------------|
@@ -76,8 +99,6 @@ FastAPI_first/
 | GET | `/html`      | `HTMLResponse`，返回 HTML 片段              |
 | GET | `/file`      | `FileResponse`，返回 `files/photo.jpg`    |
 | GET | `/news/{id}` | 仅允许 id ∈ [1, 6]；否则 `HTTPException` 404 |
-
----
 
 ### 2. Path（路径参数）与 Query（查询参数）
 
@@ -88,8 +109,6 @@ FastAPI_first/
 | GET | `/book/{id}`     | `Path`：`id` 取值范围 `(0, 101)`，即 [1, 100] |
 | GET | `/author/{name}` | `Path`：`name` 长度 [2, 10]               |
 
----
-
 ### 3. Body（请求体）
 
 使用 Pydantic `BaseModel` + `Field` 校验请求体。
@@ -98,14 +117,10 @@ FastAPI_first/
 |------|-------------|-----------------------------------------|
 | POST | `/register` | Body：`User`（`username`、`password` 长度约束） |
 
-示例字段约束（与代码一致）：
-
 | 字段         | 约束                   |
 |------------|----------------------|
 | `username` | 默认 `"张三"`，长度 [2, 10] |
 | `password` | 长度 [3, 20]           |
-
----
 
 ### 4. Depends（依赖注入）与 Middleware（中间件）
 
@@ -117,11 +132,9 @@ FastAPI_first/
 | GET | `/user/user_list` | 复用同一分页依赖                                       |
 | —   | `get_database`    | 异步会话依赖，注入到 `/book/*` 等 ORM 路由                  |
 
-`common_parameters` 约束：`skip >= 0`；`limit` 默认 10，且 `<= 60`。
+`common_parameters`：`skip >= 0`；`limit` 默认 10，且 `<= 60`。
 
-**Middleware**：两个 HTTP 中间件（`middleware1`、`middleware2`）打印请求前后日志。注册顺序靠后的先执行（由外向内）。
-
----
+**Middleware**：`middleware1`、`middleware2` 打印请求前后日志；注册顺序靠后的先执行（由外向内）。
 
 ### 5. ORM（对象关系映射）
 
@@ -133,8 +146,6 @@ FastAPI_first/
 | `Book`              | 表名 `book`：`id`、`book_name`、`author`、`price`、`publisher` |
 | `AsyncSessionLocal` | `async_sessionmaker` 会话工厂                               |
 | `get_database`      | `yield` 会话；成功提交，异常回滚，最后关闭                               |
-
----
 
 ### 6. 查询（数据库操作）
 

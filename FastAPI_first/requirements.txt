@@ -1,0 +1,6 @@
+# FastAPI 入门练习依赖（与本目录 .venv 实测版本对齐）
+fastapi==0.141.1
+uvicorn[standard]==0.21.1
+pydantic==2.13.5
+SQLAlchemy==2.0.54
+aiomysql==0.3.2

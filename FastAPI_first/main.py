@@ -255,6 +255,27 @@ async def update_book(book_id: int, data: BookUpdate, db: AsyncSession = Depends
     return db_book
 
 
+"""
+数据库操作 - 删除
+
+核心步骤：查询 get → delete 删除 → commit 提交到数据库
+"""
+
+
+@app.delete("/book/delete_book/{book_id}")
+async def delete_book(book_id: int, db: AsyncSession = Depends(get_database)):
+    # 先查再删 提交
+    db_book = await db.get(Book, book_id)
+    if db_book is None:
+        raise HTTPException(status_code=404, detail="查无此书")
+
+    await db.delete(db_book)
+    await db.commit()
+    return {
+        "msg": "删除图书成功"
+    }
+
+
 # ============================================================================================================
 # 分页参数逻辑共用：新闻列表和用户列表(依赖注入)
 # 1、依赖项
